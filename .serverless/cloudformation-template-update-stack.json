@@ -1,0 +1,174 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "RoleGodMode": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "Path": "/codebuild/mtglm/",
+        "RoleName": "CodeBuildGodMode",
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "CodeBuildGodModePolicy",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "acm:ListCertificates",
+                    "application-autoscaling:*",
+                    "apigateway:*",
+                    "cloudformation:*",
+                    "cloudfront:*",
+                    "cognito-idp:AddCustomAttributes",
+                    "cognito-idp:CreateUserPool",
+                    "cognito-idp:CreateUserPoolClient",
+                    "cognito-idp:DescribeUserPool",
+                    "cognito-idp:ListTagsForResource",
+                    "cognito-idp:UpdateUserPool",
+                    "dynamodb:*",
+                    "iam:CreateRole",
+                    "iam:CreateServiceLinkedRole",
+                    "iam:DeleteRolePolicy",
+                    "iam:GetRole",
+                    "iam:PassRole",
+                    "iam:PutRolePolicy",
+                    "lambda:*",
+                    "logs:*",
+                    "route53:*",
+                    "s3:*",
+                    "secretsmanager:GetSecretValue"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "CodeBuildWeb": {
+      "Type": "AWS::CodeBuild::Project",
+      "Properties": {
+        "Artifacts": {
+          "Type": "no_artifacts"
+        },
+        "BadgeEnabled": true,
+        "Description": "Resource to build the application user interface for MtG: League Manager.",
+        "Environment": {
+          "Type": "LINUX_CONTAINER",
+          "ComputeType": "BUILD_GENERAL1_SMALL",
+          "Image": "aws/codebuild/standard:3.0"
+        },
+        "Name": "dev-mtglm-codebuild-web",
+        "ServiceRole": "CodeBuildGodMode",
+        "Source": {
+          "Type": "GITHUB",
+          "Location": "https://github.com/Gnome-Lackey/mtglm-web.git"
+        },
+        "SourceVersion": "develop",
+        "Tags": [
+          {
+            "Key": "codebuild"
+          },
+          {
+            "Value": "mtglm-web"
+          }
+        ],
+        "TimeoutInMinutes": 10,
+        "Triggers": {
+          "Webhook": true,
+          "FilterGroups": [
+            [
+              {
+                "Type": "EVENT",
+                "Pattern": "PUSH, PULL_REQUEST_MERGED"
+              },
+              {
+                "Type": "HEAD_REF",
+                "Pattern": "^refs/heads/develop$",
+                "ExcludeMatchedPattern": false
+              }
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      }
+    }
+  }
+}

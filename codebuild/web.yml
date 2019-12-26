@@ -1,0 +1,25 @@
+Type: AWS::CodeBuild::Project
+Properties: 
+  Artifacts:
+    Type: no_artifacts
+  BadgeEnabled: true
+  Description: "Resource to build the application user interface for MtG: League Manager."
+  Environment:
+    Type: LINUX_CONTAINER
+    ComputeType: BUILD_GENERAL1_SMALL
+    Image: aws/codebuild/standard:3.0
+  Name: ${self:provider.stage}-mtglm-codebuild-web
+  ServiceRole: CodeBuildGodMode
+  Source:
+    Type: GITHUB
+    Location: https://github.com/Gnome-Lackey/mtglm-web.git
+  SourceVersion: develop
+  TimeoutInMinutes: 10
+  Triggers:
+    Webhook: true
+    FilterGroups:
+      - - Type: EVENT
+          Pattern: PUSH, PULL_REQUEST_MERGED
+        - Type: HEAD_REF
+          Pattern: ^refs/heads/develop$
+          ExcludeMatchedPattern: false

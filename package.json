@@ -1,0 +1,15 @@
+{
+  "name": "mtglm-infrastructure",
+  "version": "1.0.0",
+  "description": "Scripts to build the initial infrastructure for the entire mtglm project.",
+  "main": "index.js",
+  "scripts": {
+    "build": "sls deploy --verbose --key $AWS_ID --secret $AWS_SECRET --stage $ENV",
+    "test": "sls print --verbose --key $AWS_ID --secret $AWS_SECRET --stage $ENV"
+  },
+  "author": "herrpfister",
+  "license": "ISC",
+  "dependencies": {
+    "serverless": "^1.60.4"
+  }
+}
