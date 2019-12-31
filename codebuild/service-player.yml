@@ -11,11 +11,11 @@ Properties:
     EnvironmentVariables:
       - Name: "ENV"
         Type: "PLAINTEXT"
-        Value: "dev"
+        Value: ${self:provider.stage}
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
-        Value: "http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com"
-  Name: ${self:provider.stage}-mtglm-codebuild-service-player
+        Value: ${custom:allowedOrigin}
+  Name: ${custom:codeBuildName}-service-player
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

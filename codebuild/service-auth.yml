@@ -11,7 +11,7 @@ Properties:
     EnvironmentVariables:
       - Name: "ENV"
         Type: "PLAINTEXT"
-        Value: "dev"
+        Value: ${self:provider.stage}
       - Name: "ADMIN_PASS"
         Type: "PLAINTEXT"
         Value: "Change2Secret!"
@@ -20,8 +20,8 @@ Properties:
         Value: "Change2ValidEmail@Change2ValidEmail.val"
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
-        Value: "http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com"
-  Name: ${self:provider.stage}-mtglm-codebuild-service-auth
+        Value: ${custom:allowedOrigin}
+  Name: ${custom:codeBuildName}-service-auth
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

@@ -11,8 +11,8 @@ Properties:
     EnvironmentVariables:
       - Name: "ENV"
         Type: "PLAINTEXT"
-        Value: "dev"
-  Name: ${self:provider.stage}-mtglm-codebuild-web
+        Value: ${self:provider.stage}
+  Name: ${custom:codeBuildName}-web
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

@@ -7,6 +7,10 @@ provider:
   region: us-east-1
   memorySize: 128
 
+custom:
+  allowedOrigin: ${custom:allowedOrigin}
+  codeBuildName: ${self:provider.stage}-mtglm-codebuild
+
 resources:
   Resources:
     RoleGodMode: ${file(common/iam.yml)}
