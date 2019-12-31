@@ -11,3 +11,8 @@ resources:
   Resources:
     RoleGodMode: ${file(common/iam.yml)}
     CodeBuildWeb: ${file(codebuild/web.yml)}
+    CodeBuildServiceAuth: ${file(codebuild/service-auth.yml)}
+    CodeBuildServiceMatch: ${file(codebuild/service-match.yml)}
+    CodeBuildServicePlayer: ${file(codebuild/service-player.yml)}
+    CodeBuildServiceScryfall: ${file(codebuild/service-scryfall.yml)}
+    CodeBuildServiceSeason: ${file(codebuild/service-season.yml)}
