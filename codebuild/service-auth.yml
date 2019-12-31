@@ -20,8 +20,8 @@ Properties:
         Value: "Change2ValidEmail@Change2ValidEmail.val"
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
-        Value: ${custom:allowedOrigin}
-  Name: ${custom:codeBuildName}-service-auth
+        Value: ${self:custom.allowedOrigin}
+  Name: ${self:custom.codeBuildName}-service-auth
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

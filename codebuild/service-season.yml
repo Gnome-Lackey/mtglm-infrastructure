@@ -14,8 +14,8 @@ Properties:
         Value: ${self:provider.stage}
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
-        Value: ${custom:allowedOrigin}
-  Name: ${custom:codeBuildName}-service-season
+        Value: ${self:custom.allowedOrigin}
+  Name: ${self:custom.codeBuildName}-service-season
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

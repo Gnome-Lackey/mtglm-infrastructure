@@ -8,8 +8,9 @@ provider:
   memorySize: 128
 
 custom:
-  allowedOrigin: ${custom:allowedOrigin}
-  codeBuildName: ${self:provider.stage}-mtglm-codebuild
+  allowedOrigin: 'http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com'
+  codeBuildName: '${self:provider.stage}-mtglm-codebuild'
+  env: '${self:provider.stage}'
 
 resources:
   Resources:
