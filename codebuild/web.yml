@@ -12,7 +12,7 @@ Properties:
       - Name: "ENV"
         Type: "PLAINTEXT"
         Value: ${self:provider.stage}
-  Name: ${self:custom.codeBuildName}-web
+  Name: ${self:custom.codeBuildNamePrefix}-web
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

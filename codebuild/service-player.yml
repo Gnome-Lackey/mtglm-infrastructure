@@ -15,7 +15,7 @@ Properties:
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
         Value: ${self:custom.allowedOrigin}
-  Name: ${self:custom.codeBuildName}-service-player
+  Name: ${self:custom.codeBuildNamePrefix}-service-player
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:

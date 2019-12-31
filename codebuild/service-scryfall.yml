@@ -15,7 +15,7 @@ Properties:
       - Name: "ALLOWED_ORIGIN"
         Type: "PLAINTEXT"
         Value: ${self:custom.allowedOrigin}
-  Name: ${self:custom.codeBuildName}-service-scryfall
+  Name: ${self:custom.codeBuildNamePrefix}-service-scryfall
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:
