@@ -3,7 +3,7 @@ Properties:
   Artifacts:
     Type: no_artifacts
   BadgeEnabled: true
-  Description: "Resource to build the application user interface for MtG: League Manager."
+  Description: "Resource to build the season API layer for MtG: League Manager."
   Environment:
     Type: LINUX_CONTAINER
     ComputeType: BUILD_GENERAL1_SMALL
@@ -12,12 +12,15 @@ Properties:
       - Name: "ENV"
         Type: "PLAINTEXT"
         Value: "dev"
-  Name: ${self:provider.stage}-mtglm-codebuild-web
+      - Name: "ALLOWED_ORIGIN"
+        Type: "PLAINTEXT"
+        Value: "http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com"
+  Name: ${self:provider.stage}-mtglm-codebuild-service-season
   ServiceRole: 
     Fn::GetAtt: [RoleGodMode, Arn]
   Source:
     Type: GITHUB
-    Location: https://github.com/Gnome-Lackey/mtglm-web.git
+    Location: https://github.com/Gnome-Lackey/mtglm-service-season.git
   SourceVersion: develop
   TimeoutInMinutes: 10
   Triggers:
