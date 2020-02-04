@@ -21,3 +21,16 @@ resources:
     CodeBuildServicePlayer: ${file(codebuild/service-player.yml)}
     CodeBuildServiceScryfall: ${file(codebuild/service-scryfall.yml)}
     CodeBuildServiceSeason: ${file(codebuild/service-season.yml)}
+    MatchesTable: ${file(dynamoDB/matches.yml)}
+    PlayersTable: ${file(dynamoDB/players.yml)}
+    RecordsTable: ${file(dynamoDB/records.yml)}
+    SeasonsTable: ${file(dynamoDB/seasons.yml)}
+  Outputs:
+    matchTableArn: ${file(outputs/MatchesTableArn.yml)}
+    matchTableName: ${file(outputs/MatchesTableName.yml)}
+    playerTableArn: ${file(outputs/PlayerTableArn.yml)}
+    playerTableName: ${file(outputs/PlayerTableName.yml)}
+    recordTableArn: ${file(outputs/RecordsTableArn.yml)}
+    recordTableName: ${file(outputs/RecordsTableName.yml)}
+    seasonTableArn: ${file(outputs/SeasonTableArn.yml)}
+    seasonTableName: ${file(outputs/SeasonTableName.yml)}
