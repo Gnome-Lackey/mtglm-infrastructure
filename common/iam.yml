@@ -1,7 +1,7 @@
 Type: AWS::IAM::Role
 Properties:
   Path: /codebuild/mtglm/
-  RoleName: CodeBuildGodMode
+  RoleName: CodeBuildGodMode-${self:provider.stage}
   AssumeRolePolicyDocument:
     Version: '2012-10-17'
     Statement:
@@ -11,7 +11,7 @@ Properties:
             - codebuild.amazonaws.com
         Action: sts:AssumeRole
   Policies:
-    - PolicyName: CodeBuildGodModePolicy
+    - PolicyName: CodeBuildGodModePolicy-${self:provider.stage}
       PolicyDocument:
         Version: "2012-10-17"
         Statement:

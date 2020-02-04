@@ -21,7 +21,7 @@ Properties:
   Source:
     Type: GITHUB
     Location: https://github.com/Gnome-Lackey/mtglm-service-scryfall.git
-  SourceVersion: develop
+  SourceVersion: ${self:provider.stage}
   TimeoutInMinutes: 10
   Triggers:
     Webhook: true
@@ -29,5 +29,5 @@ Properties:
       - - Type: EVENT
           Pattern: PUSH, PULL_REQUEST_MERGED
         - Type: HEAD_REF
-          Pattern: ^refs/heads/develop$
+          Pattern: ^refs/heads/${self:provider.stage}$
           ExcludeMatchedPattern: false

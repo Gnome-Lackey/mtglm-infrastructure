@@ -4,7 +4,9 @@
   "description": "Scripts to build the initial infrastructure for the entire mtglm project.",
   "main": "index.js",
   "scripts": {
-    "build": "sls deploy --verbose --key $AWS_ID --secret $AWS_SECRET --stage $ENV",
+    "build:dev": "sls deploy --verbose --key $AWS_ID --secret $AWS_SECRET --stage dev",
+    "build:qa": "sls deploy --verbose --key $AWS_ID --secret $AWS_SECRET --stage qa",
+    "build:stg": "sls deploy --verbose --key $AWS_ID --secret $AWS_SECRET --stage stg",
     "test": "sls print --verbose --key $AWS_ID --secret $AWS_SECRET --stage $ENV"
   },
   "author": "herrpfister",
