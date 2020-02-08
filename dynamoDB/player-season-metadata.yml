@@ -1,0 +1,16 @@
+Type: AWS::DynamoDB::Table
+Properties:
+  TableName: ${self:provider.stage}-mtglm-player-season-metadata
+  AttributeDefinitions:
+    - AttributeName: playerSeasonMetaId
+      AttributeType: S
+    - AttributeName: playerId
+      AttributeType: S
+  KeySchema:
+    - AttributeName: playerSeasonMetaId
+      KeyType: HASH
+    - AttributeName: playerId
+      KeyType: RANGE
+  ProvisionedThroughput: 
+    ReadCapacityUnits: 1
+    WriteCapacityUnits: 1

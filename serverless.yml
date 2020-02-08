@@ -8,8 +8,8 @@ provider:
   memorySize: 128
 
 custom:
-  allowedOrigin: 'http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com'
-  codeBuildNamePrefix: '${self:provider.stage}-mtglm-codebuild'
+  allowedOrigin: "http://${self:provider.stage}-mtglm-web.s3-website-${self:provider.region}.amazonaws.com"
+  codeBuildNamePrefix: "${self:provider.stage}-mtglm-codebuild"
   env: ${self:provider.stage}
 
 resources:
@@ -23,6 +23,7 @@ resources:
     CodeBuildServiceSeason: ${file(codebuild/service-season.yml)}
     MatchesTable: ${file(dynamoDB/matches.yml)}
     PlayersTable: ${file(dynamoDB/players.yml)}
+    PlayerSeasonMetadataTable: ${file(dynamoDB/player-season-metadata.yml)}
     RecordsTable: ${file(dynamoDB/records.yml)}
     SeasonsTable: ${file(dynamoDB/seasons.yml)}
   Outputs:
@@ -30,6 +31,8 @@ resources:
     matchTableName: ${file(outputs/MatchesTableName.yml)}
     playerTableArn: ${file(outputs/PlayerTableArn.yml)}
     playerTableName: ${file(outputs/PlayerTableName.yml)}
+    playerSeasonMetadataTableArn: ${file(outputs/PlayerSeasonMetadataTableArn.yml)}
+    playerSeasonMetadataTableName: ${file(outputs/PlayerSeasonMetadataTableName.yml)}
     recordTableArn: ${file(outputs/RecordsTableArn.yml)}
     recordTableName: ${file(outputs/RecordsTableName.yml)}
     seasonTableArn: ${file(outputs/SeasonTableArn.yml)}
