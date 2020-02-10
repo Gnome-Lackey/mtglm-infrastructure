@@ -1,4 +1,0 @@
-Description: 'Name of the dynamo player season metadata table'
-Value: ${self:provider.stage}-mtglm-player-season-metadata
-Export:
-  Name: ${self:provider.stage}-mtglm-PlayerSeasonMetadataTableName

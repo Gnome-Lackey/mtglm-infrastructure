@@ -23,17 +23,17 @@ resources:
     CodeBuildServiceSeason: ${file(codebuild/service-season.yml)}
     MatchesTable: ${file(dynamoDB/matches.yml)}
     PlayersTable: ${file(dynamoDB/players.yml)}
-    PlayerSeasonMetadataTable: ${file(dynamoDB/player-season-metadata.yml)}
     RecordsTable: ${file(dynamoDB/records.yml)}
     SeasonsTable: ${file(dynamoDB/seasons.yml)}
+    SeasonMetadataTable: ${file(dynamoDB/season-metadata.yml)}
   Outputs:
     matchTableArn: ${file(outputs/MatchesTableArn.yml)}
     matchTableName: ${file(outputs/MatchesTableName.yml)}
     playerTableArn: ${file(outputs/PlayerTableArn.yml)}
     playerTableName: ${file(outputs/PlayerTableName.yml)}
-    playerSeasonMetadataTableArn: ${file(outputs/PlayerSeasonMetadataTableArn.yml)}
-    playerSeasonMetadataTableName: ${file(outputs/PlayerSeasonMetadataTableName.yml)}
     recordTableArn: ${file(outputs/RecordsTableArn.yml)}
     recordTableName: ${file(outputs/RecordsTableName.yml)}
     seasonTableArn: ${file(outputs/SeasonTableArn.yml)}
     seasonTableName: ${file(outputs/SeasonTableName.yml)}
+    SeasonMetadataTableArn: ${file(outputs/SeasonMetadataTableArn.yml)}
+    SeasonMetadataTableName: ${file(outputs/SeasonMetadataTableName.yml)}
