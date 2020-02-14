@@ -23,7 +23,6 @@ resources:
     CodeBuildServiceSeason: ${file(codebuild/service-season.yml)}
     MatchesTable: ${file(dynamoDB/matches.yml)}
     PlayersTable: ${file(dynamoDB/players.yml)}
-    RecordsTable: ${file(dynamoDB/records.yml)}
     SeasonsTable: ${file(dynamoDB/seasons.yml)}
     SeasonMetadataTable: ${file(dynamoDB/season-metadata.yml)}
   Outputs:
@@ -31,8 +30,6 @@ resources:
     matchTableName: ${file(outputs/MatchesTableName.yml)}
     playerTableArn: ${file(outputs/PlayerTableArn.yml)}
     playerTableName: ${file(outputs/PlayerTableName.yml)}
-    recordTableArn: ${file(outputs/RecordsTableArn.yml)}
-    recordTableName: ${file(outputs/RecordsTableName.yml)}
     seasonTableArn: ${file(outputs/SeasonTableArn.yml)}
     seasonTableName: ${file(outputs/SeasonTableName.yml)}
     SeasonMetadataTableArn: ${file(outputs/SeasonMetadataTableArn.yml)}
