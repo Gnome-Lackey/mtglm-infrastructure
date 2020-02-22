@@ -1,5 +1,0 @@
-Description: 'ARN for the dynamo season metadata table'
-Value:
-  "Fn::GetAtt": [SeasonMetadataTable, Arn]
-Export:
-  Name: ${self:provider.stage}-mtglm-SeasonMetadataTableArn
