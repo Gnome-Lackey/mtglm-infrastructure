@@ -2,10 +2,13 @@ const { exec } = require("child_process");
 
 function runCommand(cmd) {
   return new Promise((reject, resolve) => {
-    exec(cmd, (err) => {
+    exec(cmd, (err, stdout, stderr) => {
       if (err) {
         console.log(`Error running command: ${cmd}`);
         console.log(err);
+        reject(false);
+      } else if (stderr) {
+        console.log(`Command [${cmd}] failed with error: ${stderr}`);
         reject(false);
       } else {
         console.log(`Successfully ran command: ${cmd}`);
