@@ -1,7 +1,7 @@
 const { exec } = require("child_process");
 
-async function runCommand(cmd) {
-  await new Promise((reject, resolve) => {
+function runCommand(cmd) {
+  return new Promise((reject, resolve) => {
     exec(cmd, (err) => {
       if (err) {
         console.log(`Error running command: ${cmd}`);
